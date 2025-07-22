@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card p-4 shadow-sm" style="max-width: 400px; margin: auto;">
+    <h2 class="text-center mb-4">Login</h2>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+
+      <div class="mb-3">
+        {{ form.username(class="form-control {% if form.errors['username'] %}is-invalid{% endif %}", placeholder="Username") }}
+        {% if form.errors['username'] %}
+        <div class="invalid-feedback">
+          {% for error in form.username.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        {{ form.password(class="form-control {% if form.errors['password'] %}is-invalid{% endif %}", placeholder="Password") }}
+        {% if form.errors['password'] %}
+        <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-check mb-3">
+        {{ form.remember_me(class="form-check-input") }}
+        <label class="form-check-label" for="remember_me">Do you want to be remembered?</label>
+      </div>
+
+      <div class="d-grid">
+        {{ form.submit(class="btn btn-primary") }}
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

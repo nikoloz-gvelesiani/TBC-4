@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="about">About Us</h1>
+
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                ჩვენ მიზანი
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                ჩვენი მაღაზიის მიზანია რომ ხალხს მიაწოდოს კარგი და ხარისხიანი პროდუქტი რაც მათ დაეხმარებათ ახალი რამეების შესწავლაში ან დროის გაყვანაში
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                ჩვენი ისტორია
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                ჩვენი მაღაზიის მიზანი იყო რომ შეგვექმნა რამე ისეთი რომელიც ხალხს საშუალებას მისცემდა სახლიდან გაუსვლელად ეყიდათ მათვის სასურველი ნივთები, და ამ მიზანზე კონცენტრირებულმა ჩვენმა ჯგუფმა შეძლო ამის მიღწევა ხანგრძლივი სამუშაოს შემდეგ და შეიქმა ეს ონლაინ მაღაზია
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                რას გთავაზობთ
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                რაც კი მოგაგონდებათ: ეს იქნება ტექნიკა როგორც ტელეფონები,მონიტორები და ა.შ, ეს იქნება სკუტერები, მიკროფონები თუ მრავალი სხვა, ამ ყველაფრის შეძენა შესაძლებელია ჩვენს მაღაზიაში
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

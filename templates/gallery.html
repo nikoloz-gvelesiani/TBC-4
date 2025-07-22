@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">Check all our products</h1>
+
+<!-- Filter menu section -->
+<div class="filter-menu">
+    <form class="filters" method="GET" action="{{ url_for('search_gallery') }}">
+        <div class="row">
+
+            <div id="filter" class="col-md-3">
+                <label for="category">Category</label>
+                <select name="category" id="category" class="form-control">
+                    <option value="">All Categories</option>
+                    <option value="მობილური" {% if request.args.get('category') == 'მობილური' %}selected{% endif %}>მობილური</option>
+                    <option value="ჭკვიანი სახლი" {% if request.args.get('category') == 'ჭკვიანი სახლი' %}selected{% endif %}>ჭკვიანი სახლი</option>
+                    <option value="tv" {% if request.args.get('category') == 'tv' %}selected{% endif %}>tv</option>
+                    <option value="ლეპტოპი" {% if request.args.get('category') == 'ლეპტოპი' %}selected{% endif %}>ლეპტოპი</option>
+                    <option value="აქსესუარები" {% if request.args.get('category') == 'აქსესუარები' %}selected{% endif %}>აქსესუარები</option>
+                    <option value="other" {% if request.args.get('category') == 'other' %}selected{% endif %}>other</option>
+                     <option value="gaming" {% if request.args.get('category') == 'gaming' %}selected{% endif %}>gaming</option>
+                </select>
+            </div>
+
+
+            <div id="filter" class="col-md-3">
+                <label for="price">Price Range</label>
+                <select name="price" id="price" class="form-control">
+                    <option value="">All Prices</option>
+                    <option value="low" {% if request.args.get('price') == 'low' %}selected{% endif %}>Under $200</option>
+                    <option value="medium" {% if request.args.get('price') == 'medium' %}selected{% endif %}>$200 - $1000</option>
+                    <option value="high" {% if request.args.get('price') == 'high' %}selected{% endif %}>Above $1000</option>
+                </select>
+            </div>
+
+
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary mt-4">Apply Filters</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+            <div id="cards" class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <a class="goto" href="/card/{{ product.name }}">
+                    <div class="card">
+                        <img src="{{ product.img }}" class="card-img-top" alt="{{ product.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.title }}</p>
+                            <a href="#" class="btn btn-primary btn-buy">Buy it</a>
+                             {% if current_user.role == "Admin" %}
+                                    <a href="/edit_product/{{ product.id }}" class="btn btn-secondary">Edit</a>
+                                {% endif %}
+
+                                {% if current_user.role == "Admin" %}
+                                    <a href="/delete_product/{{ product.id }}" class="btn btn-danger">Delete</a>
+                                {% endif %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

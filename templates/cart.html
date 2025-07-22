@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Your Orders</h1>
+
+    {% if cart %}
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ item.name }}</td>
+                            <td>${{ item.price }}</td>
+                            <!-- Form to remove item -->
+                            <td>
+                                <form method="POST" action="/remove_item/{{ item.id }}">
+                                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <!-- Add a row for total price -->
+                    <tr class="table-info">
+                        <td colspan="3" class="text-right"><strong>Total Price:</strong></td>
+                        <td><strong>${{ total_price }}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+            <a href="/" class="btn btn-primary">Continue Shopping</a>
+            <form method="POST" action="/clear_cart">
+                <button type="submit" class="btn btn-warning">Clear Cart</button>
+            </form>
+        </div>
+    {% else %}
+        <p class="text-center text-muted">Your cart is empty. <a href="/">Start Shopping</a></p>
+    {% endif %}
+</div>
+{% endblock %}
